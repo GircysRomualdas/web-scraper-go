@@ -1,6 +1,6 @@
 # Web scraper
 
-Web scraper built with Go.
+Web crawler that scrapes pages built in Go.
 
 This is the starter code used in Boot.dev's [Build a Web Scraper in Go](https://www.boot.dev/courses/build-web-scraper-golang) course.
 
