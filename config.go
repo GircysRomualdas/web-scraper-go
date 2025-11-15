@@ -12,9 +12,20 @@ type config struct {
 	mu                 *sync.Mutex
 	concurrencyControl chan struct{}
 	wg                 *sync.WaitGroup
+	maxPages           int
 }
 
 func (cfg *config) crawlPage(rawCurrentURL string) {
+	cfg.concurrencyControl <- struct{}{}
+	defer func() {
+		<-cfg.concurrencyControl
+		cfg.wg.Done()
+	}()
+
+	if cfg.pagesLen() >= cfg.maxPages {
+		return
+	}
+
 	currentURL, err := url.Parse(rawCurrentURL)
 	if err != nil {
 		fmt.Println(err)
@@ -38,28 +49,18 @@ func (cfg *config) crawlPage(rawCurrentURL string) {
 
 	fmt.Printf("crawling %s\n", rawCurrentURL)
 
-	html, err := getHTML(rawCurrentURL)
+	htmlBody, err := getHTML(rawCurrentURL)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	pageData := extractPageData(html, rawCurrentURL)
-
-	cfg.mu.Lock()
-	cfg.pages[normalizedURL] = pageData
-	cfg.mu.Unlock()
+	pageData := extractPageData(htmlBody, rawCurrentURL)
+	cfg.setPageData(normalizedURL, pageData)
 
 	for _, nextURL := range pageData.OutgoingLinks {
 		cfg.wg.Add(1)
-
-		go func(url string) {
-			cfg.concurrencyControl <- struct{}{}
-			defer cfg.wg.Done()
-			defer func() { <-cfg.concurrencyControl }()
-
-			cfg.crawlPage(url)
-		}(nextURL)
+		go cfg.crawlPage(nextURL)
 	}
 }
 
@@ -67,10 +68,22 @@ func (cfg *config) addPageVisit(normalizedURL string) (isFirst bool) {
 	cfg.mu.Lock()
 	defer cfg.mu.Unlock()
 
-	if _, ok := cfg.pages[normalizedURL]; ok {
+	if _, visited := cfg.pages[normalizedURL]; visited {
 		return false
 	}
 
-	cfg.pages[normalizedURL] = PageData{}
+	cfg.pages[normalizedURL] = PageData{URL: normalizedURL}
 	return true
+}
+
+func (cfg *config) setPageData(normalizedURL string, data PageData) {
+	cfg.mu.Lock()
+	defer cfg.mu.Unlock()
+	cfg.pages[normalizedURL] = data
+}
+
+func (cfg *config) pagesLen() int {
+	cfg.mu.Lock()
+	defer cfg.mu.Unlock()
+	return len(cfg.pages)
 }
