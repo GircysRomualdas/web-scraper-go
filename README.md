@@ -39,30 +39,31 @@ go run . "https://blog.boot.dev/" 3 25
 
 Output:
 ```bash
-starting crawl: https://blog.boot.dev/
-crawling https://blog.boot.dev/
-crawling https://blog.boot.dev/privacy/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-11/
-crawling https://blog.boot.dev/tutorials/python/loops/
-crawling https://blog.boot.dev/education/vibe-coding-hell/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-10/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-09/
-crawling https://blog.boot.dev/create-a-course/
-crawling https://blog.boot.dev/news/training-grounds-launch/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-08/
-crawling https://blog.boot.dev/news/hackathon-2025/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-07/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-06/
-crawling https://blog.boot.dev/education/is-boot-dev-free/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-05/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-04/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-03/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-02/
-crawling https://blog.boot.dev/computer-science/18-months-with-gpt-4/
-crawling https://blog.boot.dev/news/bootdev-beat-2025-01/
-crawling https://blog.boot.dev/tutorials/python/lists/
-crawling https://blog.boot.dev/tutorials/python/functions/
-crawling https://blog.boot.dev/tutorials/python/variables/
-crawling https://blog.boot.dev/news/bootdev-beat-2024-12/
-crawling https://blog.boot.dev/news/bootdev-beat-2024-11/
+Starting crawl on: https://blog.boot.dev/
+Crawling page: https://blog.boot.dev/
+Crawling page: https://blog.boot.dev/privacy/
+Crawling page: https://blog.boot.dev/create-a-course/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2024-12/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2025-04/
+Crawling page: https://blog.boot.dev/news/training-grounds-launch/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2025-08/
+Crawling page: https://blog.boot.dev/news/hackathon-2025/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2025-07/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2025-06/
+Crawling page: https://blog.boot.dev/education/is-boot-dev-free/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2025-05/
+Crawling page: https://blog.boot.dev/page/2/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2024-11/
+Crawling page: https://blog.boot.dev/education/state-of-learning-to-code-2024/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2024-10/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2025-01/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2025-03/
+Crawling page: https://blog.boot.dev/news/bootdev-beat-2025-02/
+Crawling page: https://blog.boot.dev/computer-science/18-months-with-gpt-4/
+Crawling page: https://blog.boot.dev/contact/
+Crawling page: https://blog.boot.dev/categories/
+Crawling page: https://blog.boot.dev/tutorials/python/loops/
+Crawling page: https://blog.boot.dev/tutorials/python/lists/
+Crawling page: https://blog.boot.dev/education/vibe-coding-hell/
+CSV report generated successfully: report.csv
 ```
