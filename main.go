@@ -48,4 +48,9 @@ func main() {
 	cfg.wg.Add(1)
 	go cfg.crawlPage(rawBaseURL)
 	cfg.wg.Wait()
+
+	if err := writeCSVReport(cfg.pages, "report.csv"); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
