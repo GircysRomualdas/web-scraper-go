@@ -10,7 +10,7 @@ import (
 
 func main() {
 	if len(os.Args) != 4 {
-		fmt.Println("Usage <url> <maxConcurrency> <maxPages>")
+		fmt.Println("Usage: go run main.go <url> <maxConcurrency> <maxPages>")
 		os.Exit(1)
 	}
 
@@ -18,13 +18,13 @@ func main() {
 
 	maxConcurrency, err := strconv.Atoi(os.Args[2])
 	if err != nil {
-		fmt.Println("maxConcurrency must be an integer")
+		fmt.Println("Error: maxConcurrency must be an integer")
 		os.Exit(1)
 	}
 
 	maxPages, err := strconv.Atoi(os.Args[3])
 	if err != nil {
-		fmt.Println("maxPages must be an integer")
+		fmt.Println("Error: maxPages must be an integer")
 		os.Exit(1)
 	}
 
@@ -34,7 +34,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("starting crawl: %s\n", baseURL)
+	fmt.Printf("Starting crawl on: %s\n", baseURL)
 
 	cfg := &config{
 		pages:              make(map[string]PageData),
@@ -53,4 +53,6 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
+	fmt.Println("CSV report generated successfully: report.csv")
 }
